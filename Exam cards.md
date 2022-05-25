@@ -5,21 +5,25 @@ cards-deck: Předměty::PRG
 # PRG Exam cards
 ### Proč se programy v C rozdělují do hlavičkových souborů (.h) a zdrojových souborů (.c)? #card
 Rozděluji tak deklarace a implementace. Veřejné deklarace musí být známé všem. Je to jistá specifikace komunikace mezi programy. 
-^1653482022211
+^1653493561512
+
 
 ### Jaký význam má hlavičkový soubor zdrojových souborů programu v C? #card
 Rozděluji tak deklarace a implementace. Veřejné deklarace musí být známé všem. Je to jistá specifikace komunikace mezi programy. Umožňuje ostatním programům znát objekty (funkce) v knihovně bez znalosti implementace.
-^1653482369161
+^1653493561522
+
 
 ### Jak probíhá překlad a linkování (sestavení) programu v C? #card
 Kompilace vezme lidsky-čitelný textový soubor a vygeneruje objekt s instrukcemi ve strojovém kódu, který odpovídá zdrojovému kódu. Tento objekt ale není spustitelný, to zařídí linker. 
 Linker vezme jeden nebo více objektových souborů a vytvoří z nich spustitelný soubor. Hledá odkazy na funkce (syscally nebo z knihoven nebo napříc objekty).
-^1653482369165
+^1653493561526
+
 
 ### Vysvětlete rozdíl mezi překladem zdrojových souborů a linkováním programu? #card 
 Kompilace vezme lidsky-čitelný textový soubor a vygeneruje objekt s instrukcemi ve strojovém kódu, který odpovídá zdrojovému kódu. Tento objekt ale není spustitelný, to zařídí linker. 
 Linker vezme jeden nebo více objektových souborů a vytvoří z nich spustitelný soubor. Hledá odkazy na funkce (syscally nebo z knihoven nebo napříc objekty).
-^1653483434010
+^1653493561529
+
 
 
 ### Popište proces vytvoření spustitelného programu ze zdrojových souborů jazyka C. #card
@@ -27,11 +31,13 @@ Linker vezme jeden nebo více objektových souborů a vytvoří z nich spustitel
 2. Kompilace - Vytvoří assemblerový kód
 3. Assembly - Přemění assemblerový kód na objekt
 4. Linkování - Přetvoří objekt na spustitelný soubor. Vyřeší reference na funkce.
-^1653483434013
+^1653493561531
+
 
 ### Jaké znáte překladače jazyka C? #card 
 Mingw, clang, gcc
-^1653483434015
+^1653493561534
+
 
 
 ### Jak zajistíme, že se hlavičkový soubor programu v C nevloží při překladu vícekrát? #card
@@ -42,68 +48,81 @@ Pomocí preprocessorových příkazů. Kód může vypadat následovně:
 /* Code of the header*/
 #endif
 ```
-^1653484009288
+^1653493561537
+
 
 
 ### Co je to preprocesor a jaká je jeho funkce při překladu zdrojového souboru v jazyce C? #card
 Preprocessor je krok procesesu vytváření spustitelného souboru ze zdrojového kódu. Stará se o příkazy začínající pomocí hashtagu například `#include` nebo `#define`. Všechny tyto příkazy popisují nějakou změnu zdrojového kódu ještě před kompilací.. Například `#define KONSTANTA 3` hledá ve zdrojovém kódu řetězec `KONSTANTA` a nahradí ho řetězcem `3`.
-^1653484009327
+^1653493561539
+
 
 ### Jak při překladu programu kompilátorem GCC nebo Clang rozšíříme seznam prohledávaných adresářů s hlavičkovými soubory?
 Pomocí kompilační vlajky `-I dir` specifikujeme další adresář, kde hledat.
 
 ### Záleží u kompilace programu kompilátorem GCC nebo Clang při specifikaci adresářů s hlavičkovými soubory na jejich pořadí? #card 
 Záleží, adresáře z vlajek se procházejí v pořadí zleva-doprava tzn. že pokud bychom měli dva stejně pojmenované headery, byl by použit ten ve více levém adresáři
-^1653488688255
+^1653493561541
+
 
 ### Co způsobí definování makra preprocesoru NDEBUG v souvislosti s používáním funkce assert? #card
 Pokud je macro jménem NDEBUG definované při includenutí `<assert.h>`.  Macro assert je vypnuté -> nic nedělá. Pokud je NDEBUG nedefinované macro assert zastaví program a vypíše chybu
-^1653488688265
+^1653493561542
+
 
 ### Jaký tvar má hlavní funkce programu v C, která se spustí při spuštění programu v prostředí s operačním systémem?
 `int main(int argc, char * argv[])`
 
 ### Jakou návratovou hodnotou programu v C indikujete úspěšné vykonání a ukončení programu? Proč zvolíte právě tuto hodnotu? #card
 Úspěšné vykonání programu indikujeme návratovou hodnotou 0. Ostatní čísla vyjadřují dané chyby. 0 byla zvolena protože správný běh je jen jeden a možných chyb je několik.
-^1653488688267
+^1653493561546
+
 
 ### Jak předáváme parametry programu implementovanému v jazyce C? #card 
 Operační systém předá argumenty volání programu z terminálu do argumentů funkce main
 - `argc` - počet parametrů
 - `argv` - array stringů s parametry
 Pozor, první argument je název programu (jak byl volaný z terminálu)
-^1653488688269
+^1653493561548
+
 
 ### Existuje nějaká jiná možnost jak předat uživatelské parametry programu jinak než jako argument programu? #card 
 - Pomocí nastavení hodnot preprocessorových konstant při kompilaci programu
 - Pomocí standartního uživatelského vstupu po spuštení programu
-^1653488688271
+^1653493561550
+
 
 ### Jaký je rozdíl mezi staticky a dynamicky linkovaným programem implementovaným v jazyce C? #card 
 Statické linkování přidá dané knihovny do programu, tím zvýší jeho velkost. Dynamické linkování knihonu slinkuje až při spuštění programu.
-^1653488688273
+^1653493561552
+
 
 ### Linkují ve výchozím nastavení překladače GCC nebo Clang statické nebo dynamické binární spustitelné soubory? #card 
 Defaultní chování je dynamické linkování
-^1653488688275
+^1653493561554
+
 
 ### Jak vkládáme do zdrojového souboru programu v C hlavičkové soubory jiných modulů nebo knihoven? #card
 pomocí preprocessorového macra `#include`.  `#include <název>` pro systémové headery, v includes dir. `#include "název"`  pro hlavičky ve stejném adresáři jako program. 
-^1653488688277
+^1653493561555
+
 
 ### Jaký rozdíl mezi použitím #include <soubor.h> a #include “soubor.h”? #card
 `#include <název>` pro systémové headery, v includes dir. `#include "název"`  pro hlavičky ve stejném adresáři jako program. 
-^1653488688279
+^1653493561557
+
 
 ### Popište rozdíl mezi deklarací a definicí funkce v jazyce C? #card 
 Deklarace specifikuje interface funkce. Jak se s ní pracuje. Definice funkci implementuje a definuje kód odpovídající funkci
-^1653488688281
+^1653493561559
+
 
 ### Jak jsou předávány parametry funkci v jazyce C? #card 
 Argumenty se push-ou na stack a funkce se zavolá. Argumenty můžou být předávány:
 - Hodnotou: Hodnota proměnné se zkopíruje, změna této proměnné neovlivní nic mimo proměnnou funkci
 -  Referencí (odkazem): V C implementované pomocí pointerů. Funkci se přidá pointer na proměnnou a tím se dá vnější proměnná měnit z vnitřku funkce.
-^1653488688283
+^1653493561561
+
 
 ### Co je to literál a co tímto pojmem označujeme? #card
 Literály jsou konstatní reprezentace proměnných v C kódu. Například:
@@ -111,115 +130,142 @@ Literály jsou konstatní reprezentace proměnných v C kódu. Například:
 - `float a = 20f` je float literál
 -  `double a = 20.0`: `20.0` je double literál
 - `char a = 'c'`:  `c` je char literál.
-^1653488688285
+^1653493561562
+
 
 ### Jak lze v jazyce C realizovat předání parametru funkci odkazem? #card
 Pomocí předávání pointerem
-^1653488688287
+^1653493561565
+
 
 ### Jak lze v jazyce C omezit viditelnost funkce pouze v rámci jednoho modulu (souboru .c)? #card
 Pomocí klíčového slova `static` u deklarace funkce a její neobsažením v headeru
-^1653488688289
+^1653493561567
+
 
 ### Je možné v jazyce C volat funkci ze sebe sama (rekurze)? #card
 Ano, ale nezastavené rekurze narazí na zaplnění stacku
-^1653488688291
+^1653493561569
+
 
 ### Při volání funkce v jazyce C jsou předávány argumenty funkce, které se stanou lokálními proměnnými. V jaké části paměti jsou tyto lokální proměnné při běhu programu uloženy? #card
 Na stacku
-^1653488688294
+^1653493561571
+
 
 ### Jaké znáte kategorie proměnných z hlediska jejich umístění v paměti? #card 
 Lokální proměnné -> Na stacku.
 Dynamicky alokované -> na heap.
 Statické/globální -> data část paměti.
-^1653488688296
+^1653493561573
+
 
 ### Je součástí jazyka C přímá podpora (tj. klíčové/á slovo jazyka) dynamická alokace paměti? #card 
 Ano, `malloc` 
-^1653488688298
+^1653493561575
+
 
 
 ### Jak v jazyce C dynamicky alokovat paměť za běhu programu? #card 
 Pomocí `malloc(size)` vrátí pointer na dynamicky alokovanou pamět velikosti `size`.
-^1653488688301
+^1653493561576
+
 
 ### Je v jazyce C nutné uvolňovat dynamicky alokovanou paměť? Pokud ano, jak to uděláte? #card 
 Není to vždy třeba, protože se o to většinou postará operační systém, ale je to dobrá praxe. Můžeme to udělat pomocí `free(pointer)`
-^1653488688303
+^1653493561578
+
 
 ### Jak zjistíme velikost reprezentace datovýchtypů v jazyce C? #card 
 Pomocí `sizeof(typ)` např. `sizeof(int)`
-^1653488688305
+^1653493561580
+
 
 ### Je vždy v jazyce C velikost proměnné typu int 32 bitů? #card
 Bývá to pravidlem, ale nemusí to být vždycky pravda. Je třeba kontrolovat pomocí `sizeof(int)
-^1653488688307
+^1653493561582
+
 
 ### Kdy je velikost ukazatele v jazyce C 32-bitů a kdy 64-bitů? #card 
 Záleží na architektuře procesoru 32-bit nebo 64-bit
-^1653488688309
+^1653493561583
+
 
 ### Jak funguje modifikátor static při použití v definici lokální proměnné funkce v jazyce C? #card 
 Lokální proměnná nebude alokovaná na stacku ale v části data. Znamená to v praxi, že ve všech voláních funkce se nebude hodnota proměnné resetovat, ale zůstane stejná. 
-^1653488688311
+^1653493561585
+
 
 ### Jak funguje modifikátor extern při definici globální proměnné v jazyce C? #card 
 `extern` řekne kompilátoru, že tato proměnná je z externího zdroje a slíbíme, že bude známá při linkování
-^1653488688312
+^1653493561587
+
 
 ### Jaké znáte základní znaménkové celočíselné typy v jazyce C? #card 
 char, short, int, long, long long
-^1653488688314
+^1653493561589
+
 
 ### Rozlišuje jazyk C znaménkové a neznaménkové celočíselné typy? Pokud ano, co z toho plyne? #card 
 Ano, rozlišuje. V praxi to znamená jiné chování při přetékání. (Zároveň taky definované chování při přetečení). A možnost dosáhnout větších kladných čísel (dvojnásobně větších). Takže pokud máme jistotu, že číslo nebude menší než 0 vyplatí se použít unsigned.
-^1653488688316
+^1653493561590
+
 
 ### Jaké znáte neceločíselné typy v jazyce C? Jaká je jejich vnitřní reprezentace (velikost)? #card 
 - float: 32 bitů
 - double: aspoň 64 bitů
 - long double: aspoň 80 bitů
-^1653488688318
+^1653493561592
+
 
 ### Je součástí jazyka C typ logické hodnoty ,,true/false''? Pokud ano, jak se používá? Pokud ne, jak jej definujete? #card 
 Existuje standartní header stdbool.h, kde jsou hodnoty true/false definované jako 1/0 (buď char nebo int v závislosti na headeru). Pracuje se s nimi tedy jako s čísly, hlavně pro if statementy, kde se dají použít pro rozhodování.
-^1653488688320
+^1653493561594
+
 
 ### Jak v C definujete ukazatel na proměnnou, např. typu int? #card 
 ```C
 int n = 10;
 int * n_ptr = &n;
 ```
-^1653488688321
+^1653493561596
+
 
 ### Jaké jsou v C omezení pro názvy proměnných a funkcí? #card 
 Můžeme používat alfanumerické znaky a podtržítka. Názvy musí začínat písmenem. 
-^1653488688323
+^1653493561598
+
 
 ### Jaké znáte escape sekvence používané v C pro řídicí znaky? #card 
 - `\n` : newline
 - `\r` : carriage return
 - `\b` : backspace
 - `\t`: tab 
-^1653488688325
+^1653493561599
+
 
 ### Jak jsou v C reprezentovány textové řetězce? #card 
 Jako array charů zakončený null terminátorem -> `\0`.
-^1653488777736
+^1653493561601
+
 
 
 ### Jak v C zapisujeme identifikátory (jména funkcí a proměnných)? #card 
 Co to vůbec znamená?
-^1653488777744
+^1653493561603
+
 
 ### Jakými dvěma způsoby lze v C vytvářet konstanty? #card
-^1653488777746
+
 1. Pomocí preprocesorové direktivy `#define`
 2. Pomocí klíčového slova `const`
+^1653493561605
 
 ### Popište výčtový typ jazyka C. Uveďte vlastnosti, které považujete za důležité? #card 
 `enum dny {PO, UT, ST, CT, PA, SO, NE}`
+^1653493561607
+^1653493561608
+
 přiřadí číselné hodnoty pojmenovaným konstantám. To napomáhá čitelnosti kódu. Dále se dá využít k vytvoření vlajek, které umožňují několik nastavení v jednom čísle:
 ``` C
 enum options {
@@ -228,6 +274,7 @@ enum options {
    C = 4,
    D = 8, 
 }
+
 
 int option = 0;
 option &= A; // Přidá option A a C do int option.
@@ -241,15 +288,19 @@ if (option & A){
 - AND: `&&`
 - OR: `||`
 - NOT: `!`
+^1653493561610
+
 
 
 ### Jaké znáte bitové operátory jazyka C? Jak se zapisují? #card 
 - AND: `&`
 - OR: `|`
-- XOR: `^`
+- XOR: ``
 - complement: `-`
 - shift left: `<<`
 - shift right: `>>`
+^1653493561612
+
 
 ### Jak v C realizujete dělení a násobení dvěma s využitím operátorů bitového posunu? #card
 ```C
@@ -257,6 +308,8 @@ int a = 10;
 int l = a << 1; // l = 20
 int r = a >> 1; // r = 5
 ```
+^1653493561614
+
 
 ### Jak v C definujete složený typ (struct)? #card 
 ``` C
@@ -265,6 +318,8 @@ struct struktura {
 	char b;
 };
 ```
+^1653493561616
+
 
 ### Jak zavedeme nový typ struktury, např. pojmenovaný my_struct_s. #card 
 ``` C
@@ -272,17 +327,25 @@ typedef struct my_struct {
 	int a;
 	char b;
 } my_struct_s;
+^1653493561617
+
 
 ```
 
 ### Co je v jazyce C pointerová (ukazatelová) aritmetika a jak se používá? #card 
 Při přičítání odčítání čísel od pointeru můžeme posunout místo kam ukazuje v paměti o jednu velikost proměnné na kterou ukazuje. Např pokud int má velikost 4 bajty, zvýší se hodnota adresy v paměti o 8 pokud uděláme `n_ptr += 2`. Praktické využítí je například při přičítání k ukazateli na začátek pole.
+^1653493561619
+
 
 ### Jak se v C liší proměnná typu ukazatel a typu pole[] (VLA - pole variabilní délky)? #card 
 Deklarace `char str[] = "Ahoj PRGC"` překopíruje hodnotu literálu do str, která je uložená na stacku. Pokud bychom udělali `char * str = "Ahoj PRGC"` neměli bychom upravovat hodnotu, protože ukazatel ukazuje na string literál někde v paměti, která nemusí být writeable. Zároveň můžeme měnit velikost `char str[]` (VLA), narozdíl od pointeru, kde bychom museli využít dynamickou paměť.
+^1653493561622
+
 
 ### Jak v C přistupujeme k datovým položkám složeného typu (struct)? #card 
 Pomocí `.` například `my_struct.polozka`.
+^1653493561624
+
 
 ### Uveďte příklad přístupu k položkám proměnné složeného typu (struct) a proměnné typu ukazatel na složený typ. #card 
 ```C
@@ -291,9 +354,13 @@ int polozka = my_struct.polozka;
 // Typ je ukazatel na slozeny typ
 int polozka = my_struct->polozka;
 ```
+^1653493561626
+
 
 ### Jaký v C rozdíl mezi typy struct a union? #card 
 Union slouží k deklaraci proměnné která může mít různý typ, například `int` nebo `char`. Union by poté měla velikost intu (toho největšího typu). Struct ukládá několik typů za sebou. Například `int` a `char`. Má poté velikost `sizeof(int) + sizeof(char)`
+^1653493561628
+
 
 ### Stručně popište typ union používaný v jazyce C. #card 
 Union slouží k deklaraci proměnné která může mít různý typ, například `int` nebo `char`. Union by poté měla velikost intu (toho největšího typu).
@@ -302,14 +369,243 @@ union data {
    int i;
    char c;
 }
+^1653493561629
+
 
 sizeof(union data) // equals to sizeof(int)
 ```
 
-Jak se v jazyce C používá operátor přetypování?
+### Jak se v jazyce C používá operátor přetypování? #card 
 ```C
 int n = 20;
 int n_ptr = &n;
 char * n_bytes = (char *) n_ptr; // přemění int na array jeho bajtů 
 ```
+^1653495873237
 
+### Co v C reprezentuje typ void? #card 
+Reprezentuje žádný typ. Co to prakticky znamená záleží na kontextu:
+- `void foo(int a)` - funkce co nic nevrací
+- `int foo(void)` - funkce co vrací int, ale nemá žádný argument
+^1653495873246
+
+### Co v C reprezentuje typ void*? #card 
+Reprezentuje ukazatel na místo v paměti, které má neznámý typ. Nejčastěji se s ním asi setkáme jako s návratovou hodnotou malloc()
+^1653495873248
+
+### Jak v C realizujete opuštění dvou nebo více vnořených cyklů z nejvnitřnějšího cyklu? #card 
+Existují dva způsoby:
+1. `return` lze použít uvnitř funkce, pokud z ní chceme pryč
+2. `goto label` skočí z místa na místo v kódu
+^1653495873249
+
+### Co v C reprezentuje identifikátor NULL? #card 
+Reprezentuje pointer s adresou 0. To se může hodit například u dynamicky alokované paměti, kde `free(NULL)` nedělá nic.
+^1653495873251
+
+### Jak nastavíte proměnnou typu ukazatel na prokazatelně neplatnou hodnotu? #card 
+Tak, že ji nastavíme na `NULL`
+^1653495873253
+
+### Napište základní tvar hlavní funkce main, která se používá v C programech? Uveďte další možné tvary. #card 
+```C
+int main(int argc, char* argv[]){}
+int main(void){}
+void main(void){}
+void main(int argc, char* argv[]){}
+```
+^1653495873255
+
+### Jaký je rozdíl mezi ukazatelem na konstantní hodnotu a konstantním ukazatelem? #card 
+Ukazatel na konstatní hodnotu může měnit kam ukazuje, ale ta hodnota na kterou ukazuje by měla být konstatní. Konstantní ukazatel na hodnotu ukazuje pořád stejně, ale hodnota na kterou ukazuje se může měnit
+^1653495873257
+
+
+### Jak v C zapíšete konstantní ukazatel na konstantní hodnotu, např., typu double? #card 
+```C
+const int n = 20;
+const int* const ptr = &n
+```
+^1653495873259
+
+### Co je v C ukazatel na funkci? K čemu slouží a jak definujete proměnou typu ukazatel na funkci? #card 
+```C
+void fun(int a){
+   /*do sth*/
+}
+^1653495873260
+
+//definuje pointer názvu fun_ptr na funkci, která bere za argument int
+// a returnuje void
+void (*fun_ptr)(int); 
+fun_ptr = &fun;
+(*fun_ptr)(10); /* volá funkci na pointeru s argumentem 10 */
+
+```
+Nejčastěji se s ní setkáme asi u vytváření vláken kterým se předává jejich funkce, co mají vykonávat.  Nebo například řazení arraye, kde každou hodnotu, dle které řadíme, získáme pomocí zavolání funkce na ten prvek.
+
+### Je v C rozdíl definovat složený typ pouze jako struct a prostřednictvím typedef struct? Pokud ano, tak jaký? #card 
+Pokud definujeme pomocí typedef struct nemusíme při dalším používáním typu psát `struct název`, ale stačí `název`
+^1653495873262
+
+### Můžeme v C při definici proměnné typu pole, proměnnou přímo inicializovat? Pokud ano, jak? #card 
+Ano, můžeme 
+```C
+int pole[] = {1,2,3,4};
+```
+^1653495873264
+
+
+### Můžeme v C při definici proměnné typu struct inicializovat pouze určitou položku? #card 
+Ano, můžeme
+^1653495873266
+
+### Jakou funkcí v C vytisknete na obrazovku formátovaný znakový výstup? V jaké standardní knihovně je funkce definována? #card 
+Funkcí `printf`, z knihovny `stdio`
+^1653495873267
+
+### Jak v C načtete hodnotu textového řetězce a celého čísla od uživatele? #card 
+```C
+int n = 0;
+char str[256];
+scanf("%s %i", str, &n)
+```
+^1653495873270
+
+### Jak v C vytisknete textový řetězec na standardních výstup a standardní chybový výstup? Jakou funkci k tomu použijete? #card 
+```
+fprintf(stderr, "Zpráva\n");
+```
+^1653495873271
+
+### V jakém kontextu se používá klíčové slovo break? #card 
+`break` se používá v kontextu while a for loopu na jeho predčasné ukončení
+^1653495873274
+
+### V jakém kontextu se používá klíčové slovo case? #card 
+`case` se používá v kontextu `switch` pro definici jednotlivých případů
+^1653495873276
+
+### V jakém kontextu se používá klíčové slovo continue? #card 
+`continue` se používá v kontextu `while` a `for` loopu k přeskočení na další iteraci
+^1653495873278
+
+### V jakém kontextu se používá slovo default #card?
+`default` se používá v kontextu `switch` jako defaultní případ, pokud žádný `case` nesedí.
+
+### V jakém kontextu se používá klíčové slovo do? #card 
+V kontextu `do while` loopu.
+^1653495873280
+
+### V jakém kontextu se používá klíčové slovo while? #card 
+Pro vytvoření `while` loopu.
+^1653495873282
+
+### V jakém kontextu se používá klíčové slovo for? #card 
+Pro vytvoření `for` loopu.
+^1653495873283
+
+### Jaký význam má uvedení specifikátoru register? #card 
+^1653495873285
+Můžeme doporučit kompilátoru aby načetl hodnotu do registru a tím s ní pracoval rychleji. Nemusí nás ale poslechnout
+
+### Kdy lze použít příkaz skoku goto? #card 
+Ke skoku mezí částmi kódu uvnitř jedné funkce.
+
+### Co vrací operátor sizeof? #card 
+`sizeof(type)` vrací objekt typu `size_t`, číslo které reprezentuje počet bajtů typu.
+
+### Lze použít proměnnou jako argument operátoru sizeof? #card 
+Lze
+
+### Jak můžeme zjistit konkrétní velikost určitého datového typu? Např. celočíselný int nebo short. #card 
+Pomocí operátoru `sizeof`
+
+### Jak zajistíme, že lokální proměnná ve funkci si zachová hodnotu i při opuštění funkce? #card 
+Pomocí použítí klíčového slova `static`
+
+### Co reprezentuje klíčové slovo void? #card 
+Reprezentuje žádný typ. Co to prakticky znamená záleží na kontextu:
+- `void foo(int a)` - funkce co nic nevrací
+- `int foo(void)` - funkce co vrací int, ale nemá žádný argument
+
+### Jak definujete konstantní hodnotu typu float? #card 
+`const float pi = 3.14`
+
+### Jak rozlišíte literál typu float a double? #card 
+```C
+0.123f // float
+0.123 // double
+```
+
+### Jak vytisknete hodnotu ukazatele na standardní výstup? Jaký formátovací příkaz v printf použijete? #card 
+```C
+int n = 20;
+int *p = &n;
+printf("%x\n", p);
+```
+
+### Jak vytisknete hodnotu proměnné typu int, na kterou odkazuje ukazatel? #card 
+```C
+int n = 20;
+int *p = 20;
+printf("%i", *p);
+```
+
+### Jak získáte ukazatel na proměnnou definovanou jako double d = 12.3; #card 
+```C
+double * d_ptr = &d;
+```
+
+### Jak přistoupit na položku number proměnné data typu struktura? #card 
+```C
+data.number;
+```
+
+### K čemu slouží modifikátor const?  #card 
+`const` naznačuje že by  se proměnná neměla měnit. A znemožňuje její změnu tradičnímy způsoby. Dá se ale obejít
+
+### Jak se v C předává pole funkcím? #card 
+Pomocí pointeru na první prvek pole
+```C
+int arr[] = {1,2,3}
+
+void foo(int * pole){
+	//...
+}
+foo(arr);
+```
+
+
+### Je velikost paměťové reprezentace typu struct vždy součet velikostí typů jednotlivých položek? #card 
+Nemusí tomu tak být, kompilátor může mírně zvětšovat velikost structu tak aby lépe seděla do paměti na kulaté násobky a práce s ní byla rychlejší. tento "padding" se dá vypnout
+
+### Podporuje jazyk C přetěžování jmen funkcí? Pokud ano, od jaké verze? #card 
+Nepodporuje, dá se ale obejít pomocí defineů a `_Generic`
+
+### Jak probíhá proces spuštění programu implementovaného v jazyce C? #card 
+
+
+### Popište jak v C probíhá volání funkce int doit(int r)? Jaká data jsou předávána do/z funkce a kam jsou hodnoty ukládány?
+1. Na stack se zkopíruje hodnota int r
+2. začne vykonávání funkce. 
+3. po skončení funkce se returnutá hodnota dá zkopíruje zpátky na havní stack do proměnné, kam se ukládá.
+
+
+### Vysvětlete rozdíl mezi proměnnou a ukazatelem na proměnnou v jazyce C? #card 
+Proměnná je datový typ, který drží informace o datech, dané proměnné. Například `char c = 'd'` je 8 bitů paměti, které reprezentují znak `'c'`. Ukazatel ukazuje na místo v paměti, kde můžeme data o proměnné najít. Má 32/64 bitů a popisuje adresu. 
+
+### Jak v C dynamicky alokujete paměť pro uložení posloupnosti 20 hodnot typu data_t ? Jak následně takové dynamické pole zvětšíte pro uložení dalších 10 položek? #card 
+```C
+data_t * data_ptr = malloc(20 * sizeof(data_t));
+data_t * tmp = realloc(data_ptr, 30 * sizeof(data_t));
+if (tmp != NULL){
+	data_ptr = tmp;
+}
+free(data_ptr);
+``` 
+
+### Vyjmenujte základní paměťové třídy, ve kterých mohou být uloženy hodnoty proměnných. #card 
+auto, static, extern, register
+
+# Konec C#008
