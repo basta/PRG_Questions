@@ -137,7 +137,6 @@ Literály jsou konstatní reprezentace proměnných v C kódu. Například:
 Pomocí předávání pointerem
 ^1653493561565
 
-
 ### Jak lze v jazyce C omezit viditelnost funkce pouze v rámci jednoho modulu (souboru .c)? #card
 Pomocí klíčového slova `static` u deklarace funkce a její neobsažením v headeru
 ^1653493561567
@@ -265,7 +264,6 @@ Co to vůbec znamená?
 `enum dny {PO, UT, ST, CT, PA, SO, NE}`
 ^1653493561607
 ^1653493561608
-
 přiřadí číselné hodnoty pojmenovaným konstantám. To napomáhá čitelnosti kódu. Dále se dá využít k vytvoření vlajek, které umožňují několik nastavení v jednom čísle:
 ``` C
 enum options {
@@ -327,11 +325,8 @@ typedef struct my_struct {
 	int a;
 	char b;
 } my_struct_s;
-^1653493561617
-
-
 ```
-
+^1653493561617
 ### Co je v jazyce C pointerová (ukazatelová) aritmetika a jak se používá? #card 
 Při přičítání odčítání čísel od pointeru můžeme posunout místo kam ukazuje v paměti o jednu velikost proměnné na kterou ukazuje. Např pokud int má velikost 4 bajty, zvýší se hodnota adresy v paměti o 8 pokud uděláme `n_ptr += 2`. Praktické využítí je například při přičítání k ukazateli na začátek pole.
 ^1653493561619
@@ -511,32 +506,40 @@ Můžeme doporučit kompilátoru aby načetl hodnotu do registru a tím s ní pr
 
 ### Kdy lze použít příkaz skoku goto? #card 
 Ke skoku mezí částmi kódu uvnitř jedné funkce.
+^1653780185926
 
 ### Co vrací operátor sizeof? #card 
 `sizeof(type)` vrací objekt typu `size_t`, číslo které reprezentuje počet bajtů typu.
+^1653780185929
 
 ### Lze použít proměnnou jako argument operátoru sizeof? #card 
 Lze
+^1653780185931
 
 ### Jak můžeme zjistit konkrétní velikost určitého datového typu? Např. celočíselný int nebo short. #card 
 Pomocí operátoru `sizeof`
+^1653780185932
 
 ### Jak zajistíme, že lokální proměnná ve funkci si zachová hodnotu i při opuštění funkce? #card 
 Pomocí použítí klíčového slova `static`
+^1653780185934
 
 ### Co reprezentuje klíčové slovo void? #card 
 Reprezentuje žádný typ. Co to prakticky znamená záleží na kontextu:
 - `void foo(int a)` - funkce co nic nevrací
 - `int foo(void)` - funkce co vrací int, ale nemá žádný argument
+^1653780185936
 
 ### Jak definujete konstantní hodnotu typu float? #card 
 `const float pi = 3.14`
+^1653780185938
 
 ### Jak rozlišíte literál typu float a double? #card 
 ```C
 0.123f // float
 0.123 // double
 ```
+^1653780185941
 
 ### Jak vytisknete hodnotu ukazatele na standardní výstup? Jaký formátovací příkaz v printf použijete? #card 
 ```C
@@ -544,6 +547,7 @@ int n = 20;
 int *p = &n;
 printf("%x\n", p);
 ```
+^1653780185943
 
 ### Jak vytisknete hodnotu proměnné typu int, na kterou odkazuje ukazatel? #card 
 ```C
@@ -551,24 +555,29 @@ int n = 20;
 int *p = 20;
 printf("%i", *p);
 ```
+^1653780185945
 
 ### Jak získáte ukazatel na proměnnou definovanou jako double d = 12.3; #card 
 ```C
 double * d_ptr = &d;
 ```
+^1653780185947
 
 ### Jak přistoupit na položku number proměnné data typu struktura? #card 
 ```C
 data.number;
 ```
+^1653780185949
 
 ### K čemu slouží modifikátor const?  #card 
 `const` naznačuje že by  se proměnná neměla měnit. A znemožňuje její změnu tradičnímy způsoby. Dá se ale obejít
+^1653780185951
 
 ### Jak se v C předává pole funkcím? #card 
 Pomocí pointeru na první prvek pole
 ```C
 int arr[] = {1,2,3}
+^1653780185953
 
 void foo(int * pole){
 	//...
@@ -579,9 +588,11 @@ foo(arr);
 
 ### Je velikost paměťové reprezentace typu struct vždy součet velikostí typů jednotlivých položek? #card 
 Nemusí tomu tak být, kompilátor může mírně zvětšovat velikost structu tak aby lépe seděla do paměti na kulaté násobky a práce s ní byla rychlejší. tento "padding" se dá vypnout
+^1653780185954
 
 ### Podporuje jazyk C přetěžování jmen funkcí? Pokud ano, od jaké verze? #card 
 Nepodporuje, dá se ale obejít pomocí defineů a `_Generic`
+^1653780185956
 
 ### Jak probíhá proces spuštění programu implementovaného v jazyce C? #card 
 
@@ -590,10 +601,12 @@ Nepodporuje, dá se ale obejít pomocí defineů a `_Generic`
 1. Na stack se zkopíruje hodnota int r
 2. začne vykonávání funkce. 
 3. po skončení funkce se returnutá hodnota dá zkopíruje zpátky na havní stack do proměnné, kam se ukládá.
+^1653780185958
 
 
 ### Vysvětlete rozdíl mezi proměnnou a ukazatelem na proměnnou v jazyce C? #card 
 Proměnná je datový typ, který drží informace o datech, dané proměnné. Například `char c = 'd'` je 8 bitů paměti, které reprezentují znak `'c'`. Ukazatel ukazuje na místo v paměti, kde můžeme data o proměnné najít. Má 32/64 bitů a popisuje adresu. 
+^1653780185960
 
 ### Jak v C dynamicky alokujete paměť pro uložení posloupnosti 20 hodnot typu data_t ? Jak následně takové dynamické pole zvětšíte pro uložení dalších 10 položek? #card 
 ```C
@@ -604,8 +617,290 @@ if (tmp != NULL){
 }
 free(data_ptr);
 ``` 
+^1653780185962
 
 ### Vyjmenujte základní paměťové třídy, ve kterých mohou být uloženy hodnoty proměnných. #card 
 auto, static, extern, register
 
-# Konec C#008
+### Jaký význam má klíčové slovo static v závislosti na kontextu? #card 
+Statická glob. proměnná a funkce jsou pouze viditelné v jednom daném souboru. Statická lokální proměnná je persistentní napříč voláními funkce
+
+### Definujte pole variabilní délky o velikosti n, kterou načtete ze standarního vstupu. #card 
+```C
+int n = 0;
+scanf("%i", &n);
+int arr[n];
+```
+
+### Definujte diagonální (jednotkovou) matici 3×3 jako 2D pole typu int.  #card 
+```C
+Definujte diagonální (jednotkovou) matici 3×3 jako 2D pole typu int.
+```
+^1653780185964
+
+### Garantuje uvedení const u definice proměnné, že není žádná možnost jak příslušnou hodnotu proměnné změnit? #card 
+Negarantuje
+^1653780185966
+
+
+### Je v C možné použít příkaz nepodmíněného skoku goto ke skoku z jedné funkce do jiné? Pokud ne, proč? #card 
+Je to nedefinované chování. Nemuselo by být vůbec jasné jaké hodnoty pro proměnné v té funkci používat. Například při rekurzi
+```C
+int i=0;
+A(){
+run:
+    B();
+}
+B(){
+if(i==10)
+    goto run;
+i++;
+A();
+}
+```
+Do jaké verze A by mělo toto goto skočit? Není vůbec jasné
+^1653780185967
+
+### Popište k čemu slouží příkaz dlouhého skoku (longjmp/setjmp) v C. Jak se používá? #card 
+`setjmp` nastaví místo, kam má skákat `longjmp`. setjmp uloží současný kontext a stav a `longjmp` na něj skočí a obnoví.
+^1653780185969
+
+### Vyjmenujte základní rozdělení paměti přidělné spuštěnému programu z hlediska kódu, proměnných a literálů? #card 
+- Text - instrukce programu
+- Inicializovaná data - globální proměnné, statické proměnné, literály 
+- Neinicializovaná data - bss - jsou zde uložené neinicializované proměnné
+- Stack - Ukládá lokální proměnné.
+- Heap/halda - Dynamicky alokovaná paměť
+^1653780185971
+
+### Vyjmenujte (čtyři) specifikátory paměťové třídy (Storage Class Specifiers - SCS). #card 
+ - auto
+ - register
+ - static
+ - extern
+^1653780185973
+
+### Jaké typy paměti dle způsobu alokace rozlišujeme v jazyce C? #card 
+Haldu a stack. Na stacku jsou lokální proměnné na heap jsou dynamicky alokovaná data
+^1653780185975
+
+### Definujte nový typ, který umožní sdílet paměť pro proměnnou typu double, nebo proměnnou typu int. #card 
+```C
+typedef union {
+	dbl double;
+	intgr int;
+} doublint;
+```
+^1653780185977
+
+### Co znamená klíčové slovo volatile? #card 
+Říká kompilátoru, že proměnná se může kdykoliv změnit a musí s tím počítat.
+^1653780185979
+
+### Jaký význam má klíčové slovo extern dle kontextu? #card 
+1. U proměnné jí deklaruje, ale nedefinuje. Řekne compileru, že je v jiném souboru a bude linknutá později
+2. U funkcí umožňuje aby byly volané  z jiných souborů, defaultní chování
+^1653780185981
+
+### V jakém hlavičkovém souboru standardní knihovny C jsou deklarovány funkce pro vstup a výstup? #card 
+`stdio.h`
+^1653780185982
+
+### V jakém hlavičkovém souboru standardní knihovny C jsou deklarovány nejběžnější funkce std. knihovny? #card 
+`stdlib.h`
+^1653780185984
+
+### V jakém hlavičkovém souboru standardní knihovny C jsou deklarovány funkce pro práci s textovými řetězci? #card 
+`string.h`
+^1653780185986
+
+### Co je errno a v jakém hlavičkovém souboru standardní knihovny C je deklarováno? #card 
+`errno.h` je to číslo, které popisuje poslední chybu například ze systémových knihoven.
+^1653780185988
+
+### Jakým způsobem jsou předávány nebo jinak ukládány chybové stavy ve většině funkcí standardní knihovny C? #card 
+
+### Jakým způsobem jsou předávány nebo jinak ukládány chybové stavy ve většině funkcí standardní knihovny C? #card 
+Buďto použitím návratové hodnoty nebo pomocí `errno`
+^1653780185990
+
+### K čemu slouží makro assert a v jakém je hlavičkovém souboru standardní knihovny C? #card 
+`assert.h`. Zajišťuje pravdivost nějaké podmínky, užitečné při debugování. Například pro kontrolu otevření sériového portu
+^1653780186021
+
+
+### Ve kterém hlavičkovém souboru standardní knihovny C jsou definovány matematické funkce? #card 
+`math.h`
+^1653780186024
+
+### Ve kterém hlavičkovém souboru standardní knihovny C byste hledali rozsahy základní číselných typů? #card 
+`limits.h`
+^1653780186026
+
+### Jakým způsobem otevřete soubor pro čtení? Napište krátký (1-3 řádkový) kód? #card 
+``` C
+FILE *f = fopen("filename", "r");
+```
+^1653780186028
+
+### Jakým způsobem otevřete soubor pro zápis? Napište krátký (1-3 řádkový) kód? #card 
+```C
+FILE *f = fopen("filename", "w");
+```
+^1653780186030
+
+### Proč je vhodné explicitně zavírat otevřený soubor? Jakou funkci standardní knihovny C k tomu použijete? #card 
+Použiju funkci `fclose`. Můžeme ztratit data, které se nezapíšou do souboru nebo nám můžou dojít file descriptory.
+^1653780186032
+
+### Jak zjistíte, že jste při čtení souboru dosáhli konce souborů? Jakou funkci standardní knihovny C k tomu můžete použít? #card 
+Pokud získáme při čtění ze souboru symbol rovný `EOF` soubor končí. Funkce `feof` zkontroluje jestli jsme opravdu na konci souboru
+^1653780186034
+
+### Jak zjistíte podrobnosti o selhání čtení/zápisu z/do souboru s využitím funkcí standardní knihovny C? #card 
+Pomocí funkce `ferror`, která dá číslo reprezentující chybový stav
+^1653780186036
+
+### Jak rozlišíte chybu a dosažení konce souboru při neúspěchu čtení ze souboru, např. funkcí fscanf()? #card 
+Při chybě a konci fscanf vrátí `EOF`, můžeme pak pomocí `ferror` zjistit, zda-li to byla chyba nebo konec
+^1653780186038
+
+### Jaké znáte funkci/e standardní knihovny C pro náhodný přístup k souborům? #card 
+??? `fseek?`
+^1653780186040
+
+### Jaké znáte funkce standardní knihovny C pro blokové čtení a zápis? #card 
+`read` a `write`
+^1653780186041
+
+### Co je to proces v terminologii operačního systému? #card 
+Program, který právě bězí a má svůj prostor v paměti
+^1653780186044
+
+### Budete se snažit svůj program paralelizovat i když máte pouze jeden procesor? Svou odpověď zdůvodněte. #card 
+???
+^1653780186046
+
+### Jaké základní operace související s paralelním programováním (více procesové/vláknové) řeší programovací jazyky s explicitní podporou paralelismu? #card 
+Podpora vytváření nových procesů, zastavování dětí, když rodič zemře, určení sdílení paměti mezi parentem a dítětem
+^1653780186048
+
+
+### Jaké entity (operačního systému) slouží k řízení přístupu ke sdíleným zdrojům? #card 
+Semafor, 
+^1653780186050
+
+### Jak lze standardní vstup a výstup využít pro komunikaci mezi procesy? #card 
+Pomocí pipeování na linuxových systémech
+```
+./program1 | ./program2
+```
+^1653780186052
+
+### Co je to vlákno (thread)? #card 
+Nezávislé vykonávání instrukcí části programu, které může managovat scheduler
+^1653780186054
+
+### Jaký je rozdíl mezi vláknem a procesem? #card 
+Proces je:
+1. heavyweight
+2. seperátní paměť a zdroje
+3. `fork()`
+Vlákno:
+1. ligtweight
+2. sdílená paměť
+3. `clone()`
+^1653780186056
+
+### Co musí úloha splňovat, aby mělo smysl uvažovat o vícevláknové architektuře aplikace (obecně, ne konkrétní typ aplikací)? #card 
+Vyskytuje se v ní čekání na uživatelský vstup/jiná data a aplikace musí být responsivní i při čekání na tyto data
+^1653780186057
+
+### Je aplikace s interaktivním rozhraním vhodným kandidátem pro vícevláknovou aplikaci a proč? #card 
+Ano, aplikace vyžaduje aby byla stále responsivní na uživatelský vstup, i když zrovna něco dělá.
+^1653780186059
+
+### Kdy nemá smysl použití více vláken pro aplikaci s uživatelským rozhraním? #card 
+Pokud akce, co uživatel vykonává nezpusobí žádný dlouhý výpočet a aplikace  bude znovu brzo responsivní. 
+^1653780186061
+
+### Má smysl vyvíjet vícevláknové aplikace pro systémy s jediným CPU a proč? #card 
+Ano, i jedno CPU může čekat na data a nebo na webový request. Nebo vyžadovat okamžitou reakci na uživatelský vstup.
+^1653780186064
+
+### Kde se mohou nacházet vlákna z hlediska řízení přidělování procesoru? #card 
+V userspace (user knihovna) nebo implementovaný operačním sys (scheduler). 
+^1653780186066
+
+### Jak jsou rozvrhována vlákna řešená uživatelskou knihovnou a co to znamená z hlediska priority vláken? #card 
+Knihovna si rozvrhování řeší vlastním rozvrhovačem. Proces musí utrácet čas na rozhodování priority průběhu vláken.
+^1653780186068
+
+### Jaké modely vícevláknových aplikací znáte? #card 
+- Boss/Worker - Jedno hlavní vlákno řídí ostatní
+- Peer - Vlákna si rozvrhují práci bez řídícího
+- Pipeline - spracovávání dát v sekvenci operací
+^1653780186070
+
+### Co je to thread pool a k čemu je dobrý #card 
+Předvytvořená zásoba vláken, které je postupně přiřzovaná práce. Snižuje overhead vytváření nových vláken při každém požadavku
+^1653780186072
+
+### Jak snížíte nároky opakovaného vytváření vláken? #card 
+Pomocí thread poolu. tj. Předvytvořená zásoba vláken, které je postupně přiřzovaná práce. Snižuje overhead vytváření nových vláken při každém požadavku
+^1653780186074
+
+
+### Jakou architekturu vícevláknové aplikace použijete v případě zpracování proudu dat? #card 
+pipeline
+^1653780186076
+
+### Jaké vlastnosti musí splňovat proudové zpracování dat, aby bylo výhodné použít více vláken? #card 
+Data musí být rozdělitelné na části které jsou na sebe nezávislé při zpracovávní.
+^1653780186078
+
+### Jak předáváme data mezi vlákny v úloze producent/konzument? #card 
+Pomocí nějakého bufferu, kam se postupně připisuje práce. Buffer refrencí na datové jednotky
+^1653780186079
+
+### Jaké je základní primitivum synchronizace více vláken? #card 
+Semafor
+^1653780186081
+
+### Jaké znáte primitiva pro synchronizaci více vláken? #card 
+Mutex, cond variable, semafor
+^1653780186083
+
+### Kdy říkáme, že je funkce reentrantní? #card 
+V jedné chvíli ta funkce může být vykonávána několikrát
+^1653780186085
+
+### Co je to thread-safe funkce? #card 
+Funkce, kterou může volat několik vláken najednou
+^1653780186087
+
+### Jak dosáhneme reentrantní funkce? #card 
+Nesmíme psát do statických a nesmíme používat globální data
+^1653780186089
+
+### Jak dosáhneme thread-safe funkce? #card 
+Musíme používat synchronizační primitivy při přístupu ke globálním datům
+^1653780186091
+
+### Jaké hlavní synchronizační problémy se objevují u vícevláknových aplikací? #card 
+- dead lock - vlákno čeká na mutex1, který je už zamklý druhým vláknem. Aby ho odemklo, musí první vlákno odemknout jiný mutex. Ale to už je seklé na mutex1
+- race condition - Přístup několika vláken najednou do sdílené paměti
+^1653780186093
+
+### Co je to problém uváznutí (deadlock)? #card 
+- dead lock - vlákno čeká na mutex1, který je už zamklý druhým vláknem. Aby ho odemklo, musí první vlákno odemknout jiný mutex. Ale to už je seklé na mutex1
+^1653780186095
+
+### Co je to problém souběhu (race conditions) u vícevláknové aplikace? #card 
+- race condition - Přístup několika vláken najednou do sdílené paměti
+^1653780186097
+
+
+### Jak se lze vyhnout problému uváznutí u vícevláknové aplikace? #card 
+Používat co nejkratší kritické sekce -> zamykat a odemykat co nejblíže kritickému kódu.
+^1653780186099
