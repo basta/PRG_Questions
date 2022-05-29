@@ -148,7 +148,7 @@ Ano, ale nezastavené rekurze narazí na zaplnění stacku
 
 
 ### Při volání funkce v jazyce C jsou předávány argumenty funkce, které se stanou lokálními proměnnými. V jaké části paměti jsou tyto lokální proměnné při běhu programu uloženy? #card
-Na stacku
+Na stacku (popřípadě na registru, to jsme ale nejspíše v PRG neměli)
 ^1653493561571
 
 
@@ -218,7 +218,7 @@ Ano, rozlišuje. V praxi to znamená jiné chování při přetékání. (Zárov
 
 
 ### Je součástí jazyka C typ logické hodnoty ,,true/false''? Pokud ano, jak se používá? Pokud ne, jak jej definujete? #card 
-Existuje standartní header stdbool.h, kde jsou hodnoty true/false definované jako 1/0 (buď char nebo int v závislosti na headeru). Pracuje se s nimi tedy jako s čísly, hlavně pro if statementy, kde se dají použít pro rozhodování.
+Od C99 existuje vestavěný typ `_Bool`. Existuje standartní header stdbool.h, kde jsou hodnoty true/false definované jako 1/0 (buď char nebo int v závislosti na headeru). A makro `bool`, které expanduje na `_Bool` Pracuje se s nimi tedy jako s čísly, hlavně pro if statementy, kde se dají použít pro rozhodování.
 ^1653493561594
 
 
@@ -294,7 +294,7 @@ if (option & A){
 - AND: `&`
 - OR: `|`
 - XOR: ``
-- complement: `-`
+- complement: `~`
 - shift left: `<<`
 - shift right: `>>`
 ^1653493561612
@@ -463,8 +463,9 @@ Funkcí `printf`, z knihovny `stdio`
 ```C
 int n = 0;
 char str[256];
-scanf("%s %i", str, &n)
+scanf("%255s %i", str, &n)
 ```
+U formátovacího symbolu `%255s` 255 omezuje maximání délku řetězce, abychom zabránili přetečení
 ^1653495873270
 
 ### Jak v C vytisknete textový řetězec na standardních výstup a standardní chybový výstup? Jakou funkci k tomu použijete? #card 
@@ -545,7 +546,7 @@ Reprezentuje žádný typ. Co to prakticky znamená záleží na kontextu:
 ```C
 int n = 20;
 int *p = &n;
-printf("%x\n", p);
+printf("%p\n", p);
 ```
 ^1653780185943
 
@@ -595,7 +596,11 @@ Nepodporuje, dá se ale obejít pomocí defineů a `_Generic`
 ^1653780185956
 
 ### Jak probíhá proces spuštění programu implementovaného v jazyce C? #card 
-
+1. jádro (nebo jiný zavaděč) kód a data programu nakopírují do RAM
+2. jádro vytvoří nový proces (pouze v případě OS)
+3. (volitelné, pouze pod OS) zavolá se linker, pokud jde o dynamicky linkovaný program. Ten najde chybějící funkce ve sdílených knihovnách, načte je do to paměti a doplní do programu odkazy na funkce. V praxi se to ještě mírně liší - kvůli rychlejšímu startu programu se část funkcí hledá až při jejich prvním zavolání. První zavolání je přesměrované na linker, druhé a další už volá přímo danou funkci.
+4. jádro uvnitř procesu (nebo zavaděč) skočí do inicializační procedury Cčkové knihovny, ta provede další inicializační kroky (příprava zásobníku, inicializace dat, ...)
+5. Cčková knihovna skočí do `main()`
 
 ### Popište jak v C probíhá volání funkce int doit(int r)? Jaká data jsou předávána do/z funkce a kam jsou hodnoty ukládány?
 1. Na stack se zkopíruje hodnota int r
@@ -634,7 +639,7 @@ int arr[n];
 
 ### Definujte diagonální (jednotkovou) matici 3×3 jako 2D pole typu int.  #card 
 ```C
-Definujte diagonální (jednotkovou) matici 3×3 jako 2D pole typu int.
+int eye[3][3] = { [0][0] = 1, [1][1] = 1, [2][2] = 1 };
 ```
 ^1653780185964
 
@@ -687,8 +692,8 @@ Haldu a stack. Na stacku jsou lokální proměnné na heap jsou dynamicky alokov
 ### Definujte nový typ, který umožní sdílet paměť pro proměnnou typu double, nebo proměnnou typu int. #card 
 ```C
 typedef union {
-	dbl double;
-	intgr int;
+	double dbl;
+	int intgr;
 } doublint;
 ```
 ^1653780185977
@@ -766,20 +771,16 @@ Při chybě a konci fscanf vrátí `EOF`, můžeme pak pomocí `ferror` zjistit,
 ^1653780186038
 
 ### Jaké znáte funkci/e standardní knihovny C pro náhodný přístup k souborům? #card 
-??? `fseek?`
+ `fseek` - ale nejsme si tu jistí
 ^1653780186040
 
 ### Jaké znáte funkce standardní knihovny C pro blokové čtení a zápis? #card 
-`read` a `write`
+`fread` a `fwrite`
 ^1653780186041
 
 ### Co je to proces v terminologii operačního systému? #card 
 Program, který právě bězí a má svůj prostor v paměti
 ^1653780186044
-
-### Budete se snažit svůj program paralelizovat i když máte pouze jeden procesor? Svou odpověď zdůvodněte. #card 
-???
-^1653780186046
 
 ### Jaké základní operace související s paralelním programováním (více procesové/vláknové) řeší programovací jazyky s explicitní podporou paralelismu? #card 
 Podpora vytváření nových procesů, zastavování dětí, když rodič zemře, určení sdílení paměti mezi parentem a dítětem
@@ -904,3 +905,7 @@ Musíme používat synchronizační primitivy při přístupu ke globálním dat
 ### Jak se lze vyhnout problému uváznutí u vícevláknové aplikace? #card 
 Používat co nejkratší kritické sekce -> zamykat a odemykat co nejblíže kritickému kódu.
 ^1653780186099
+
+
+## Poděkování
+Velké díky Jakubovi Váňkovi za detailní korekturu.
