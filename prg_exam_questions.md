@@ -160,7 +160,7 @@ Statické/globální -> data část paměti.
 
 
 ### Je součástí jazyka C přímá podpora (tj. klíčové/á slovo jazyka) dynamická alokace paměti? #card 
-Ano, `malloc` 
+Klíčové slovo ne, musíme použít příkaz `malloc` ze std. knihovny
 ^1653493561575
 
 
